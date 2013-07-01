@@ -259,7 +259,7 @@ func (b *Browser) SyncVideo(dirname, videoUrl string) error {
 	if start == -1 || end == -1 {
 		return errors.New("error parsing filename from response")
 	}
-	basename := disp[0][start+1 : end]
+	basename := strings.Replace(disp[0][start+1 : end], `/`, `-`, -1)
 	// Check if file already exists.
 	filename := fmt.Sprintf("%s/%s", dirname, basename)
 	_, err = os.Stat(filename)
